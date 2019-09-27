@@ -8,11 +8,21 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http';
+import { RegistrarPage } from './auth/registrar/registrar.page';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [ AppComponent, RegistrarPage],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule,
+            IonicModule.forRoot(),
+            AppRoutingModule,
+            FormsModule,
+            ReactiveFormsModule,
+            HttpClientModule
+          ],
   providers: [
     StatusBar,
     SplashScreen,

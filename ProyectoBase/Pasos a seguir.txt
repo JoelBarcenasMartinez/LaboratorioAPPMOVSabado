@@ -1,1 +1,6 @@
-1- correr el siguiente comando para usar el 
+1-  ejecutar el comando ng generate service service/httpService
+2-  Agregar api en enviroment.
+3-  modificacion de app.module.ts import { HttpClientModule } from '@angular/common/http';
+    import
+4-  ng generate service auth/registrar/registrar
+5-  ng generate class model/usuario

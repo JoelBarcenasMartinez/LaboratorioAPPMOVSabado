@@ -1,0 +1,31 @@
+ion-item{
+    --background: #15D0B3;
+    --color: #fff;
+    --border-color: white;
+}
+
+ion-input{
+    font-family: 'Nunito';
+    --placeholder-color: white; 
+    --placeholder-opacity: 100;
+
+}
+
+ion-button{
+    --background: white;
+    --opacity: 100;	
+    font-family: 'Nunito';
+    font-weight: 900;
+    color: #15D0B3;
+}
+
+h3{
+    color: white;
+    font-weight: bold;
+    font-family: 'Nunito';
+}
+
+.divButton {
+    padding-top: 40px;
+    text-align: center;
+}
