@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -18,19 +17,18 @@ export abstract class HttpService<T> {
   }
 
   protected getAll(): Observable<T> {
-    return this.http.get(this.endPoint) as Observable<T>;
+    return this.http.get(`${this.endPoint}`) as Observable<T>;
   }
 
   protected save(object: T): Observable<T> {
-    return this.http.post<T>(this.endPoint, object);
+    return this.http.post<T>(`${this.endPoint}`, object);
+  }
+  protected update(object: T, id: number): Observable<T> {
+    return this.http.put<T>(`${this.endPoint}` + '/' + `${id}`, object);
   }
 
-  protected update(object: T, id: number) {
-    return this.http.put(this.endPoint + '/' + id, object);
-  }
-
-  protected delete(id: number) {
-    return this.http.delete(this.endPoint + '/' + id);
+  protected delete(id: number):  Observable<T> {
+    return this.http.delete<T>(`${this.endPoint}` + '/' + `${id}`);
   }
 
 }
