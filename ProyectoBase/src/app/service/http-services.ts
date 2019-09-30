@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 export abstract class HttpService<T> {
@@ -21,6 +21,10 @@ export abstract class HttpService<T> {
   }
 
   protected save(object: T): Observable<T> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*' });
+    const options = { headers };
     return this.http.post<T>(`${this.endPoint}`, object);
   }
   protected update(object: T, id: number): Observable<T> {
