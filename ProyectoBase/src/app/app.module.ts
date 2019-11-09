@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrarPage } from './auth/registrar/registrar.page';
 import { LoginPage } from './auth/login/login.page';
+import { StorageServiceModule } from 'ngx-webstorage-service';
 
 @NgModule({
   declarations: [ AppComponent, RegistrarPage,LoginPage],
@@ -22,7 +23,9 @@ import { LoginPage } from './auth/login/login.page';
             AppRoutingModule,
             FormsModule,
             ReactiveFormsModule,
-            HttpClientModule
+            HttpClientModule,
+            // tslint:disable-next-line: deprecation
+            StorageServiceModule
           ],
   providers: [
     StatusBar,

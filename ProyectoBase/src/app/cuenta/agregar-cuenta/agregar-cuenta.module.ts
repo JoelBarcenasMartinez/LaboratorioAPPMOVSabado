@@ -1,28 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CuentaPage } from './cuenta.page';
-import { AgregarCuentaPageModule } from './agregar-cuenta/agregar-cuenta.module';
+import { AgregarCuentaPage } from './agregar-cuenta.page';
 
 const routes: Routes = [
   {
-    path: '',
-    component: CuentaPage
+    path: 'agregarCuenta',
+    component: AgregarCuentaPage
   }
 ];
 
 @NgModule({
   imports: [
-    AgregarCuentaPageModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CuentaPage]
+  declarations: [AgregarCuentaPage]
 })
-export class CuentaPageModule {}
+export class AgregarCuentaPageModule {}

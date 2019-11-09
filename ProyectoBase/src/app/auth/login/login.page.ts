@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrarService } from '../registrar/registrar.service';
 import { Usuario } from 'src/app/model/usuario';
 import { ModalController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LoginService } from './loginService';
+import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginPage implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private loginService: LoginService,
               private alertController: AlertController,
-              private router: Router) {
+              private router: Router,
+              @Inject(LOCAL_STORAGE) private storage: StorageService) {
 
               this.loginForm = this.formBuilder.group({
                 correo: ['', [Validators.required, Validators.email]],
@@ -35,7 +37,9 @@ export class LoginPage implements OnInit {
       this.usuario.correo = this.loginForm.controls.correo.value;
       this.usuario.contrasena = this.loginForm.controls.contrasena.value;
       this.loginService.Login(this.usuario).subscribe(
-        value => {
+        data => {
+          this.storage.set('correo', this.usuario.correo);
+          console.log(this.storage.get('correo'));
           this.loginCorrecto();
         },
         error => {
@@ -46,13 +50,13 @@ export class LoginPage implements OnInit {
 
   async loginCorrecto() {
     const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Finixer',
+      header: 'Finixer',
+      subHeader: '',
       message: 'Bienvenido a Finixer',
       buttons: [{
         text: 'Aceptar',
         handler: () => {
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/tabs/cuenta');
         }
       }]
     });
@@ -62,7 +66,7 @@ export class LoginPage implements OnInit {
 
   async error(error: string){
     const alert = await this.alertController.create({
-      header: 'Alert',
+      header: 'Finixer',
       subHeader: 'Error',
       message: error,
       buttons: [{
